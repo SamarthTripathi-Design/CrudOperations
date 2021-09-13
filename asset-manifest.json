@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/CrudOperations/static/css/main.a617e044.chunk.css",
+    "main.js": "/CrudOperations/static/js/main.21219ca4.chunk.js",
+    "main.js.map": "/CrudOperations/static/js/main.21219ca4.chunk.js.map",
+    "runtime-main.js": "/CrudOperations/static/js/runtime-main.8d1c05b7.js",
+    "runtime-main.js.map": "/CrudOperations/static/js/runtime-main.8d1c05b7.js.map",
+    "static/js/2.27ecf4ac.chunk.js": "/CrudOperations/static/js/2.27ecf4ac.chunk.js",
+    "static/js/2.27ecf4ac.chunk.js.map": "/CrudOperations/static/js/2.27ecf4ac.chunk.js.map",
+    "static/js/3.c38a82db.chunk.js": "/CrudOperations/static/js/3.c38a82db.chunk.js",
+    "static/js/3.c38a82db.chunk.js.map": "/CrudOperations/static/js/3.c38a82db.chunk.js.map",
+    "index.html": "/CrudOperations/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/CrudOperations/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.27ecf4ac.chunk.js.LICENSE.txt": "/CrudOperations/static/js/2.27ecf4ac.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8d1c05b7.js",
+    "static/js/2.27ecf4ac.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.21219ca4.chunk.js"
+  ]
+}
