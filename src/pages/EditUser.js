@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import { addUser } from "../redux/actions";
+import { useHistory, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser, getSingleUser } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddUser = () => {
+const EditUser = () => {
   const classes = useStyles();
   const [state, setstate] = useState({
     name: "",
@@ -25,11 +25,23 @@ const AddUser = () => {
     address: "",
   });
 
-  const [error, seterror] = useState();
+  let { id } = useParams();
+  const [error, seterror] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const { user } = useSelector((state) => state.data);
 
   const { name, email, contact, address } = state;
+
+  useEffect(() => {
+    dispatch(getSingleUser(id));
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setstate({ ...user });
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
@@ -41,7 +53,7 @@ const AddUser = () => {
     if (!name || !address || !email || !contact) {
       seterror("Please input all fields");
     } else {
-      dispatch(addUser(state));
+      dispatch(updateUser(state, id));
       history.push("/");
       seterror("");
     }
@@ -57,7 +69,7 @@ const AddUser = () => {
       >
         Go Back
       </Button>
-      <h2> ADD USER </h2>
+      <h2> EDIT USER </h2>
       {error && <h3 style={{ color: "Red" }}>{error}</h3>}
       <form
         className={classes.root}
@@ -69,7 +81,7 @@ const AddUser = () => {
           id="standard-basic"
           label="Name"
           name="name"
-          value={name}
+          value={name || ""}
           type="text"
           onChange={handleInputChange}
         />
@@ -78,7 +90,7 @@ const AddUser = () => {
           id="standard-basic"
           label="Email"
           name="email"
-          value={email}
+          value={email || ""}
           type="email"
           onChange={handleInputChange}
         />
@@ -87,7 +99,7 @@ const AddUser = () => {
           id="standard-basic"
           label="Contact"
           name="contact"
-          value={contact}
+          value={contact || ""}
           type="number"
           onChange={handleInputChange}
         />
@@ -96,7 +108,7 @@ const AddUser = () => {
           id="standard-basic"
           label="Location"
           name="address"
-          value={address}
+          value={address || ""}
           type="text"
           onChange={handleInputChange}
         />
@@ -109,11 +121,11 @@ const AddUser = () => {
           type="submit"
           onChange={handleInputChange}
         >
-          Submit
+          Update
         </Button>
       </form>
     </div>
   );
 };
 
-export default AddUser;
+export default EditUser;

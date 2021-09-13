@@ -42,17 +42,13 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+// const rows = [
+//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+//   createData("Eclair", 262, 16.0, 24, 6.0),
+//   createData("Cupcake", 305, 3.7, 67, 4.3),
+//   createData("Gingerbread", 356, 16.0, 49, 3.9),
+// ];
 
 const useStyles = makeStyles({
   table: {
@@ -104,34 +100,44 @@ const Home = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
-              <StyledTableRow key={user.id}>
-                <StyledTableCell component="th" scope="row">
-                  {user.name}
-                </StyledTableCell>
-                <StyledTableCell align="center">{user.email}</StyledTableCell>
-                <StyledTableCell align="center">{user.contact}</StyledTableCell>
-                <StyledTableCell align="center">{user.address}</StyledTableCell>
-                <StyledTableCell align="center">
-                  <div className={buttonstyles.root}>
-                    <ButtonGroup
-                      variant="contained"
-                      aria-label="contained primary button group"
-                    >
-                      <Button style={{ marginRight: "5px" }} color="primary">
-                        Edit
-                      </Button>
-                      <Button
-                        color="secondary"
-                        onClick={() => handleDelete(user.id)}
+            {users &&
+              users.map((user) => (
+                <StyledTableRow key={user.id}>
+                  <StyledTableCell component="th" scope="row">
+                    {user.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{user.email}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {user.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {user.address}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <div className={buttonstyles.root}>
+                      <ButtonGroup
+                        variant="contained"
+                        aria-label="contained primary button group"
                       >
-                        Delete
-                      </Button>
-                    </ButtonGroup>
-                  </div>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                        <Button
+                          style={{ marginRight: "5px" }}
+                          color="primary"
+                          onClick={() => history.push(`/editUser/${user.id}`)}
+                        >
+                          Edit
+                        </Button>
+
+                        <Button
+                          color="secondary"
+                          onClick={() => handleDelete(user.id)}
+                        >
+                          Delete
+                        </Button>
+                      </ButtonGroup>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
